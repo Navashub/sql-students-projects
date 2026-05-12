@@ -7,8 +7,9 @@ csv_path = Path('retail_sales_dataset.csv')
 
 with psycopg.connect(conn_str) as conn:
     with conn.cursor() as cur:
+        cur.execute('DROP TABLE IF EXISTS retail_sales')
         cur.execute('''
-            CREATE TABLE IF NOT EXISTS retail_sales (
+            CREATE TABLE retail_sales (
                 transaction_id INTEGER PRIMARY KEY,
                 date DATE,
                 customer_id TEXT,
